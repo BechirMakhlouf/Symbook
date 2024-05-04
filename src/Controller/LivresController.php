@@ -28,37 +28,37 @@ class LivresController extends AbstractController
 
         return $this->render('livres/show.html.twig', ['livre' => $livre]);
     }
-    #[Route('/admin/livres/create', name: 'app_admin_livres_create')]
-    public function create(EntityManagerInterface $em): Response
-    {
-        $livre1 = new Livres();
-        $livre1->setAuteur('auteur 1')
-            ->setEditedAt(new \DateTimeImmutable('01-01-2023'))
-            ->setTitre('Titre 4')
-            ->setQte(100)
-            ->setResume('jhgkjhkjhlhdjfjfdgpghkgmgbkmgblkgm')
-            ->setSlug('titre-4')
-            ->setPrix(200)
-            ->setEditeur('Eni')
-            ->setIsbn('111.1111.1111.1115')
-            ->setImage('https://picsum.photos/300');
-        $livre2 = new Livres();
-        $livre2->setAuteur('auteur 3')
-            ->setEditedAt(new \DateTimeImmutable('01-01-2023'))
-            ->setTitre('Titre 4')
-            ->setQte(100)
-            ->setResume('jhgkjhkjhlhdjfjfdgpghkgmgbkmgblkgm')
-            ->setSlug('titre-4')
-            ->setPrix(200)
-            ->setEditeur('Eni')
-            ->setIsbn('111.1111.1111.1115')
-            ->setImage('https://picsum.photos/300');
-
-        $em->persist($livre1);
-        $em->persist($livre2);
-        $em->flush();
-        dd($livre1);
-    }
+    // #[Route('/admin/livres/create', name: 'app_admin_livres_create')]
+    // public function create(EntityManagerInterface $em): Response
+    // {
+        // $livre1 = new Livres();
+        // $livre1->setAuteur('auteur 1')
+        //     ->setEditedAt(new \DateTimeImmutable('01-01-2023'))
+        //     ->setTitre('Titre 4')
+        //     ->setQte(100)
+        //     ->setResume('jhgkjhkjhlhdjfjfdgpghkgmgbkmgblkgm')
+        //     ->setSlug('titre-4')
+        //     ->setPrix(200)
+        //     ->setEditeur('Eni')
+        //     ->setIsbn('111.1111.1111.1115')
+        //     ->setImage('https://picsum.photos/300');
+        // $livre2 = new Livres();
+        // $livre2->setAuteur('auteur 3')
+        //     ->setEditedAt(new \DateTimeImmutable('01-01-2023'))
+        //     ->setTitre('Titre 4')
+        //     ->setQte(100)
+        //     ->setResume('jhgkjhkjhlhdjfjfdgpghkgmgbkmgblkgm')
+        //     ->setSlug('titre-4')
+        //     ->setPrix(200)
+        //     ->setEditeur('Eni')
+        //     ->setIsbn('111.1111.1111.1115')
+        //     ->setImage('https://picsum.photos/300');
+        //
+        // $em->persist($livre1);
+        // $em->persist($livre2);
+        // $em->flush();
+        // dd($livre1);
+    // }
 
     #[Route('/admin/livres/delete/{id}', name: 'app_admin_livres_delete')]
     public function delete(EntityManagerInterface $em, Livres $livre): Response

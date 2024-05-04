@@ -1,7 +1,8 @@
 # SYMBOOK
 - **Groupe:**
     - Oussama Soudani
-    - @BechirMakhlouf
+    - Bechir Makhlouf
+
 # Fonctionnalités
 ## Pour les Utilisateurs:
 1. [ ] Inscription avec confirmation par email : Les utilisateurs doivent saisir leur adresse email lors de l'inscription. Un email de confirmation sera envoyé à l'adresse fournie pour vérifier l'authenticité de l'utilisateur.
@@ -9,18 +10,17 @@
 3. [ ] Réinitialisation du mot de passe : En cas d'oubli de mot de passe, les utilisateurs peuvent demander une réinitialisation du mot de passe via un lien envoyé par email.
 4. [ ] Parcours et recherche de livres par titre, auteur et catégorie à partir d’une vitrine affichant les photos des livres avec deux boutons «Voir détail » et « Ajouter au panier »
 5. [ ] Consultation des détails des livres, y compris les prix et les descriptions.
-6. [ ] Ajout de livres au panier d'achat. Nidhal CHERIF
+6. [ ] Ajout de livres au panier d'achat.
 7. [ ] Consultation du panier avec possibilité de mise à jour de quantité à Inscription et authentification des utilisateurs.
 8. [ ] Passage de commandes pour les livres sélectionnés.
 9. [ ] Consultation de l'historique des commandes.
 10. [ ] Module de paiement (Exemple Stripe) sécurisé pour finaliser les transactions.
 
-
 ## Pour les administrateurs:
 1. [X] Gestion du catalogue de livres : ajout, modification et suppression de livres.
 2. [ ] Gestion des catégories de livres : création, édition et suppression de catégories.
 3. [ ] Consultation des commandes en attente, en cours et complétées.
-4. [ ] Gestion des utilisateurs : consultation, modification et suppression des comptes d'utilisateurs.
+4. [ ] Gestion des utilisateurs : consultation, modification et suppression des comptes d'utilisateurs. // STRIKE THIS
 5. [ ] Consultation du Tableau de bord (Dashboard) avec indicateurs clés, tels que le livre le plus vendu,
 
 ## Tableau de Bord (Administrateur):

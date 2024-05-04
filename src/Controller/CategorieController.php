@@ -38,9 +38,19 @@ class CategorieController extends AbstractController
 
         return $this->render('categorie/create.html.twig', [
             'f' => $form
-
         ]);
     }
+
+    #[Route('/admin/categorie/delete/{id}', name: 'app_admin_livres_delete')]
+    public function delete(EntityManagerInterface $em, Categories $categorie): Response
+    {
+      
+        $em->remove($categorie);
+        $em->flush();
+        dd($categorie);
+        return $this->redirectToRoute('admin_categorie');
+    }
+
     #[Route('/admin/categorie/update/{id}', name: 'admin_categorie_update')]
     public function update(Categories $categorie, EntityManagerInterface $em, Request $request): Response
     {
