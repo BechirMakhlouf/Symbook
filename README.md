@@ -1,5 +1,5 @@
 # SYMBOOK
-- **Groupe: **
+- **Groupe:**
     - Oussama Soudani
     - @BechirMakhlouf
 # Fonctionnalités
