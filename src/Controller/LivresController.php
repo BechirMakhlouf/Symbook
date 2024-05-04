@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[IsGranted('ROLE_ADMIN')]
+// #[IsGranted('ROLE_ADMIN')]
 class LivresController extends AbstractController
 {
     #[Route('/admin/livres', name: 'admin_livres')]
@@ -21,13 +21,13 @@ class LivresController extends AbstractController
     {
         $livres = $rep->findAll();
         //dd($livres);
-        return $this->render('Livres/index.html.twig', ['livres' => $livres]);
+        return $this->render('livres/index.html.twig', ['livres' => $livres]);
     }
     #[Route('/admin/livres/show/{id}', name: 'admin_livres_show')]
     public function show(Livres $livre): Response
     {
 
-        return $this->render('Livres/show.html.twig', ['livre' => $livre]);
+        return $this->render('livres/show.html.twig', ['livre' => $livre]);
     }
     #[Route('/admin/livres/create', name: 'app_admin_livres_create')]
     public function create(EntityManagerInterface $em): Response
@@ -83,7 +83,6 @@ class LivresController extends AbstractController
 
         return $this->render('livres/add.html.twig', [
             'f' => $form
-
         ]);
     }
 }
