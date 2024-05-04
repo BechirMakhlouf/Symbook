@@ -16,7 +16,6 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class LivresController extends AbstractController
 {
     #[Route('/admin/livres', name: 'admin_livres')]
-
     public function index(LivresRepository $rep): Response
     {
         $livres = $rep->findAll();
@@ -54,11 +53,13 @@ class LivresController extends AbstractController
             ->setEditeur('Eni')
             ->setIsbn('111.1111.1111.1115')
             ->setImage('https://picsum.photos/300');
+
         $em->persist($livre1);
         $em->persist($livre2);
         $em->flush();
         dd($livre1);
     }
+
     #[Route('/admin/livres/delete/{id}', name: 'app_admin_livres_delete')]
     public function delete(EntityManagerInterface $em, Livres $livre): Response
     {
@@ -67,6 +68,7 @@ class LivresController extends AbstractController
         $em->flush();
         dd($livre);
     }
+
     #[Route('/admin/livres/add', name: 'admin_livres_add')]
     public function add(EntityManagerInterface $em, Request $request): Response
     {
