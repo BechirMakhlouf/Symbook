@@ -20,7 +20,7 @@
 1. [X] Gestion du catalogue de livres : ajout, modification et suppression de livres.
 2. [ ] Gestion des catégories de livres : création, édition et suppression de catégories.
 3. [ ] Consultation des commandes en attente, en cours et complétées.
-4. [ ] Gestion des utilisateurs : consultation, modification et suppression des comptes d'utilisateurs. // STRIKE THIS
+4. [X] Gestion des utilisateurs : consultation, modification et suppression des comptes d'utilisateurs. // STRIKE THIS
 5. [ ] Consultation du Tableau de bord (Dashboard) avec indicateurs clés, tels que le livre le plus vendu,
 
 ## Tableau de Bord (Administrateur):
