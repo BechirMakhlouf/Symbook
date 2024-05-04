@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use DateTime;
 use App\Entity\Livres;
 use App\Form\LivreType;
 use App\Repository\LivresRepository;
@@ -42,7 +41,7 @@ class LivresController extends AbstractController
             ->setSlug('titre-4')
             ->setPrix(200)
             ->setEditeur('Eni')
-            ->setISBN('111.1111.1111.1115')
+            ->setIsbn('111.1111.1111.1115')
             ->setImage('https://picsum.photos/300');
         $livre2 = new Livres();
         $livre2->setAuteur('auteur 3')
@@ -53,7 +52,7 @@ class LivresController extends AbstractController
             ->setSlug('titre-4')
             ->setPrix(200)
             ->setEditeur('Eni')
-            ->setISBN('111.1111.1111.1115')
+            ->setIsbn('111.1111.1111.1115')
             ->setImage('https://picsum.photos/300');
         $em->persist($livre1);
         $em->persist($livre2);

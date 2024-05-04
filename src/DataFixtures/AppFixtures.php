@@ -6,13 +6,13 @@ use App\Entity\Categories;
 use App\Entity\Livres;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use Faker\Factory;
+// use Faker\Factory;
 
 class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $faker = Factory::create('fr_FR');
+        $faker = \Faker\Factory::create('fr_FR');
         for ($j = 1; $j <= 3; $j++) {
             $cat = new Categories();
             $cat->setLibelle($faker->name)
@@ -36,7 +36,7 @@ class AppFixtures extends Fixture
                     ->setSlug(strtolower(preg_replace('/[^a-zA-Z0-9]/', '-', $titre)))
                     ->setPrix($faker->numberBetween(10, 300))
                     ->setEditeur($faker->company())
-                    ->setISBN($faker->isbn13())
+                    ->setIsbn($faker->isbn13())
                     ->setImage($faker->imageUrl())
                     ->setCategorie($cat);
 
