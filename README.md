@@ -1,5 +1,7 @@
 # SYMBOOK
-
+- **Groupe: **
+    - Oussama Soudani
+    - @BechirMakhlouf
 # Fonctionnalités
 ## Pour les Utilisateurs:
 1. [ ] Inscription avec confirmation par email : Les utilisateurs doivent saisir leur adresse email lors de l'inscription. Un email de confirmation sera envoyé à l'adresse fournie pour vérifier l'authenticité de l'utilisateur.
@@ -11,18 +13,17 @@
 7. [ ] Consultation du panier avec possibilité de mise à jour de quantité à Inscription et authentification des utilisateurs.
 8. [ ] Passage de commandes pour les livres sélectionnés.
 9. [ ] Consultation de l'historique des commandes.
-10. [ ] Module de paiement (Exemple Stripe) sécurisé pour finaliser les transactions. Pour les Administrateurs :
+10. [ ] Module de paiement (Exemple Stripe) sécurisé pour finaliser les transactions.
 
 
 ## Pour les administrateurs:
-1. [ ] Gestion du catalogue de livres : ajout, modification et suppression de livres.
+1. [X] Gestion du catalogue de livres : ajout, modification et suppression de livres.
 2. [ ] Gestion des catégories de livres : création, édition et suppression de catégories.
 3. [ ] Consultation des commandes en attente, en cours et complétées.
 4. [ ] Gestion des utilisateurs : consultation, modification et suppression des comptes d'utilisateurs.
 5. [ ] Consultation du Tableau de bord (Dashboard) avec indicateurs clés, tels que le livre le plus vendu,
 
 ## Tableau de Bord (Administrateur):
-
 1. [ ] Livre le Plus Vendu : Ce graphique présente le livre le plus vendu dans une période donnée. Il vous permet de voir quel livre est le plus populaire parmi les clients.
 2. [ ] Nombre de Commandes : Ce graphique montre le nombre total de commandes passées dans une période donnée. Il vous permet de visualiser l'activité des clients et la demande des produits.
 3. [ ] Utilisation d'une interface conviviale et intuitive pour sélectionner différentes périodes de temps (quotidienne, hebdomadaire, mensuelle, etc.) afin d'analyser les données de manière flexible.
