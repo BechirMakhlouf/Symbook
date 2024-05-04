@@ -3,88 +3,79 @@
 namespace App\Controller;
 
 use App\Entity\Livres;
-use App\Form\LivreType;
+use App\Form\LivresType;
 use App\Repository\LivresRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-// #[IsGranted('ROLE_ADMIN')]
+#[Route('/livres')]
 class LivresController extends AbstractController
 {
-    #[Route('/admin/livres', name: 'admin_livres')]
-    public function index(LivresRepository $rep): Response
+    #[Route('/', name: 'app_livres_index', methods: ['GET'])]
+    public function index(LivresRepository $livresRepository): Response
     {
-        $livres = $rep->findAll();
-        //dd($livres);
-        return $this->render('livres/index.html.twig', ['livres' => $livres]);
-    }
-    #[Route('/admin/livres/show/{id}', name: 'admin_livres_show')]
-    public function show(Livres $livre): Response
-    {
-
-        return $this->render('livres/show.html.twig', ['livre' => $livre]);
-    }
-    // #[Route('/admin/livres/create', name: 'app_admin_livres_create')]
-    // public function create(EntityManagerInterface $em): Response
-    // {
-        // $livre1 = new Livres();
-        // $livre1->setAuteur('auteur 1')
-        //     ->setEditedAt(new \DateTimeImmutable('01-01-2023'))
-        //     ->setTitre('Titre 4')
-        //     ->setQte(100)
-        //     ->setResume('jhgkjhkjhlhdjfjfdgpghkgmgbkmgblkgm')
-        //     ->setSlug('titre-4')
-        //     ->setPrix(200)
-        //     ->setEditeur('Eni')
-        //     ->setIsbn('111.1111.1111.1115')
-        //     ->setImage('https://picsum.photos/300');
-        // $livre2 = new Livres();
-        // $livre2->setAuteur('auteur 3')
-        //     ->setEditedAt(new \DateTimeImmutable('01-01-2023'))
-        //     ->setTitre('Titre 4')
-        //     ->setQte(100)
-        //     ->setResume('jhgkjhkjhlhdjfjfdgpghkgmgbkmgblkgm')
-        //     ->setSlug('titre-4')
-        //     ->setPrix(200)
-        //     ->setEditeur('Eni')
-        //     ->setIsbn('111.1111.1111.1115')
-        //     ->setImage('https://picsum.photos/300');
-        //
-        // $em->persist($livre1);
-        // $em->persist($livre2);
-        // $em->flush();
-        // dd($livre1);
-    // }
-
-    #[Route('/admin/livres/delete/{id}', name: 'app_admin_livres_delete')]
-    public function delete(EntityManagerInterface $em, Livres $livre): Response
-    {
-
-        $em->remove($livre);
-        $em->flush();
-        dd($livre);
+        return $this->render('livres/index.html.twig', [
+            'livres' => $livresRepository->findAll(),
+        ]);
     }
 
-    #[Route('/admin/livres/add', name: 'admin_livres_add')]
-    public function add(EntityManagerInterface $em, Request $request): Response
+    #[Route('/new', name: 'app_livres_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $livre = new Livres();
-        //construction de l'objet formulaire
-        $form = $this->createForm(LivreType::class, $livre);
-        // recupéretaion et traitement de données
+        $form = $this->createForm(LivresType::class, $livre);
         $form->handleRequest($request);
-        if ($form->isSubmitted() and $form->isValid()) {
-            $em->persist($livre);
-            $em->flush();
-            return $this->redirectToRoute('admin_livres');
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($livre);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_livres_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('livres/add.html.twig', [
-            'f' => $form
+        return $this->render('livres/new.html.twig', [
+            'livre' => $livre,
+            'form' => $form,
         ]);
+    }
+
+    #[Route('/{id}', name: 'app_livres_show', methods: ['GET'])]
+    public function show(Livres $livre): Response
+    {
+        return $this->render('livres/show.html.twig', [
+            'livre' => $livre,
+        ]);
+    }
+
+    #[Route('/{id}/edit', name: 'app_livres_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Livres $livre, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(LivresType::class, $livre);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_livres_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('livres/edit.html.twig', [
+            'livre' => $livre,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/{id}', name: 'app_livres_delete', methods: ['POST'])]
+    public function delete(Request $request, Livres $livre, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$livre->getId(), $request->request->get('_token'))) {
+            $entityManager->remove($livre);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('app_livres_index', [], Response::HTTP_SEE_OTHER);
     }
 }
