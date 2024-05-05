@@ -16,6 +16,7 @@
 
 		<div class="container mt-3"> {% block body %}{% endblock %}
 			</div>
+    {{include("footer.html.twig")}}
     {% block javascripts %}
         {% block importmap %}{{ importmap('app') }}{% endblock %}
     {% endblock %}
