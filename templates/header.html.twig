@@ -3,7 +3,7 @@
   <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-16 items-center justify-between">
       <div class="flex-1 md:flex md:items-center md:gap-12">
-        <a class="block text-teal-600" href="#">
+        <a class="block text-teal-600" href="{{url('app_home')}}">
           <span class="sr-only">Home</span>
           <svg class="h-8" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -13,18 +13,35 @@
           </svg>
         </a>
       </div>
-
       <div class="md:flex md:items-center md:gap-12">
-        <nav aria-label="Global" class="hidden md:block">
-          <ul class="flex items-center gap-6 text-sm">
-            <li>
-              <a class="text-gray-500 transition hover:text-gray-500/75" href="#"> Compte </a>
-            </li>
+        <nav aria-label="Global" class="m-0 p-0 hidden md:flex md:justify-center md:items-center">
 
-            <li>
-              <a class="text-gray-500 transition hover:text-gray-500/75" href="#"> Panier </a>
-            </li>
-          </ul>
+        {% if is_granted('ROLE_ADMIN') %}
+            <ul class="m-0 flex justify-center items-center gap-6 text-sm">
+              <li class="">
+                <a class="text-gray-500 transition hover:text-gray-500/75" href="{{url('app_livres')}}"> Livres </a>
+              </li>
+
+              <li>
+                <a class="text-gray-500 transition hover:text-gray-500/75" href="{{url('app_categories')}}"> Categories </a>
+              </li>
+
+              <li>
+                <a class="text-gray-500 transition hover:text-gray-500/75" href="{{url('app_user')}}"> Users </a>
+              </li>
+            </ul>
+
+        {% elseif is_granted('ROLE_USER') %}
+            <ul class="m-0 flex justify-center items-center gap-6 text-sm">
+              <li class="">
+                <a class="text-gray-500 transition hover:text-gray-500/75" href="#"> Compte </a>
+              </li>
+
+              <li>
+                <a class="text-gray-500 transition hover:text-gray-500/75" href="#"> Panier </a>
+              </li>
+            </ul>
+        {% endif %}
         </nav>
         <div class="flex items-center gap-4">
          {% if app.user %}
