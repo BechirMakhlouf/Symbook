@@ -1,53 +1,52 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Livres index{% endblock %}
-
+{% block title %}Accueil
+{% endblock %}
 {% block body %}
-    <h1>Livres index</h1>
+<h1>Liste des livres</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Titre</th>
-                <th>Isbn</th>
-                <th>Slug</th>
-                <!-- <th>Image</th> -->
-                <th>Resume</th>
-                <th>Editeur</th>
-                <th>EditedAt</th>
-                <th>Prix</th>
-                <th>Qte</th>
-                <th>Auteur</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for livre in livres %}
-            <tr>
-                <td>{{ livre.id }}</td>
-                <td>{{ livre.titre }}</td>
-                <td>{{ livre.isbn }}</td>
-                <td>{{ livre.slug }}</td>
-                <!-- <td>{{ livre.image }}</td> -->
-                <td>{{ livre.resume }}</td>
-                <td>{{ livre.editeur }}</td>
-                <td>{{ livre.editedAt ? livre.editedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ livre.prix }}</td>
-                <td>{{ livre.Qte }}</td>
-                <td>{{ livre.Auteur }}</td>
-                <td>
-                    <a href="{{ path('app_livres_show', {'id': livre.id}) }}">show</a>
-                    <a href="{{ path('app_livres_edit', {'id': livre.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="12">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <a href="{{ path('app_livres_new') }}">Create new</a>
+<!--
+  Heads up! 👋
+
+  This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
+-->
+
+<div class="overflow-x-auto">
+  <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+    <thead class="ltr:text-left rtl:text-right">
+      <tr>
+		<th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Titre</th>
+		<th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">ISBN</th>
+		<th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Editeur</th>
+		<th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Date Edition</th>
+		<th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Prix(DT)</th>
+    <th class="px-4 py-2">Action</th>
+      </tr>
+    </thead>
+
+    <tbody class="divide-y divide-gray-200">
+      {% for livre in livres %}
+      <tr>
+        <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">{{livre.titre|capitalize}}</td>
+        <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{livre.isbn}}</td>
+        <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{livre.editeur}}</td>
+        <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{livre.editedAt|date('d-m-Y')}}</td>
+        <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{livre.prix}}</td>
+        <td class="whitespace-nowrap px-4 py-2">
+          <a href="#" class="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700" >
+            Details
+          </a>
+          <a href="#" class="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700" >
+            Editer
+          </a>
+          <a href="#" class="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700" >
+            Suppr
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endblock %}
