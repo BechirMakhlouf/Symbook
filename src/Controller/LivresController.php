@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/livres')]
+#[Route('admin/livres')]
 class LivresController extends AbstractController
 {
     #[Route('/', name: 'app_livres', methods: ['GET'])]

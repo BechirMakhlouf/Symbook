@@ -18,6 +18,11 @@
       <div class="md:flex md:items-center md:gap-12">
         <nav aria-label="Global" class="m-0 p-0 hidden md:flex md:justify-center md:items-center">
 
+            <ul class="m-0 flex justify-center items-center gap-6 text-sm">
+              <li class="">
+                <a class="text-gray-500 transition hover:text-gray-500/75" href="{{url('app_boutique')}}"> Boutique </a>
+              </li>
+            </ul>
         {% if is_granted('ROLE_ADMIN') %}
             <ul class="m-0 flex justify-center items-center gap-6 text-sm">
               <li class="">
@@ -39,7 +44,7 @@
               </li>
 
               <li>
-                <a class="text-gray-500 transition hover:text-gray-500/75" href="#"> Panier </a>
+                <a class="text-gray-500 transition hover:text-gray-500/75" href="{{url('app_panier')}}"> Panier </a>
               </li>
             </ul>
         {% endif %}

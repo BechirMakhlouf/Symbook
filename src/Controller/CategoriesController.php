@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/categories')]
+#[Route('admin/categories')]
 class CategoriesController extends AbstractController
 {
     #[Route('/', name: 'app_categories', methods: ['GET'])]
@@ -59,7 +59,7 @@ class CategoriesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_categories_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_categories', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('categories/edit.html.twig', [
