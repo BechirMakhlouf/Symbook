@@ -1,0 +1,86 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Livre{% endblock %}
+
+{% block body %}
+<!--
+  Heads up! 👋
+
+  This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
+-->
+<div class="w-full py-5 flex justify-center">
+  <div class="flex-row items-center justify-center overflow-x-auto">
+    <h3>Info du livre {{livre.id}}:</h3>
+
+    <table class="divide-y-2 divide-gray-200 bg-white text-sm">
+
+      <!-- <thead class="ltr:text-left rtl:text-right"> -->
+      <!--   <tr> -->
+      <!--     <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">id</th> -->
+      <!--     <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Date of Birth</th> -->
+      <!--     <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Role</th> -->
+      <!--     <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Salary</th> -->
+      <!--   </tr> -->
+      <!-- </thead> -->
+
+    <div class="flex ">
+      </div>
+
+        <tbody class="divide-y divide-gray-200">
+          <tr>
+            <td class="whitespace-nowrap px-4 py-2 font-bold text-gray-900">Id</td>
+            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ livre.id }}</td>
+          </tr>
+
+          <tr>
+            <td class="whitespace-nowrap px-4 py-2 font-bold text-gray-900">Titre</td>
+            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ livre.titre }}</td>
+          </tr>
+
+          <tr>
+            <td class="whitespace-nowrap px-4 py-2 font-bold text-gray-900">Isbn</td>
+            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{livre.Isbn}}</td>
+          </tr>
+          <tr>
+            <td class="whitespace-nowrap px-4 py-2 font-bold text-gray-900">Slug</td>
+            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{livre.slug}}</td>
+          </tr>
+          <tr>
+            <td class="whitespace-nowrap px-4 py-2 font-bold text-gray-900">Image</td>
+            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{livre.image}}</td>
+          </tr>
+          <tr>
+            <td class="whitespace-nowrap px-4 py-2 font-bold text-gray-900">Resume</td>
+            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{livre.resume}}</td>
+          </tr>
+          <tr>
+            <td class="whitespace-nowrap px-4 py-2 font-bold text-gray-900">Editeur</td>
+            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{livre.editeur}}</td>
+          </tr>
+          <tr>
+            <td class="whitespace-nowrap px-4 py-2 font-bold text-gray-900">EditedAt</td>
+            <td class="whitespace-nowrap px-4 py-2 text-gray-700"> {{ livre.editedAt ? livre.editedAt|date('Y-m-d H:i:s') : '' }} </td>
+          </tr>
+
+          <tr>
+            <td class="whitespace-nowrap px-4 py-2 font-bold text-gray-900">Prix</td>
+            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{livre.prix}}</td>
+          </tr>
+          <tr>
+            <td class="whitespace-nowrap px-4 py-2 font-bold text-gray-900">Qte</td>
+            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{livre.Qte}}</td>
+          </tr>
+          <tr>
+            <td class="whitespace-nowrap px-4 py-2 font-bold text-gray-900">Auteur</td>
+            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{livre.Auteur}}</td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+</div>
+{#
+    <a href="{{ path('app_livres') }}">back to list</a>
+    <a href="{{ path('app_livres_edit', {'id': livre.id}) }}">edit</a>
+#}
+{% endblock %}

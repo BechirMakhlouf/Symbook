@@ -148,7 +148,7 @@
     <div class=" h-full grid grid-cols-1 gap-4 lg:grid-cols-4 lg:gap-8">
     {% for livre in livres %}
       <div class=" rounded-lg">
-        <a href="#" class="group block">
+        <a href="{{ path('app_boutique_livre', {'id': livre.id}) }}" class="group block">
           <img
             src="{{livre.Image}}"
             alt="{{livre.titre}}"
