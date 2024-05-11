@@ -146,7 +146,7 @@
 
   <div class="p-4 w-full h-full">
     <div class=" h-full grid grid-cols-1 gap-4 lg:grid-cols-4 lg:gap-8">
-    {% for livre in livres %}
+    {% for livre in pagination %}
       <div class=" rounded-lg">
         <a href="{{ path('app_boutique_livre', {'id': livre.id}) }}" class="group block">
           <img
@@ -165,6 +165,9 @@
         </a>
       </div>
       {% endfor %}
+    </div>
+    <div class="pagination">
+    {{ knp_pagination_render(pagination, 'bundles/KnpPaginatorBundle/Pagination/custom_pagination.html.twig') }}
     </div>
   </div>
 </div>

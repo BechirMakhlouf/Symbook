@@ -35,7 +35,7 @@ class BoutiqueController extends AbstractController
             10 
         );
 
-        return $this->render('boutique/index2.html.twig', [
+        return $this->render('boutique/index.html.twig', [
             'pagination' => $pagination,
         ]);
     }

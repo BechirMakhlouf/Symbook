@@ -58,7 +58,7 @@
         </thead>
 
         <tbody class="divide-y divide-gray-200">
-          {% for categorie in categories %}
+          {% for categorie in pagination %}
           <tr>
             <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">{{categorie.id}}</td>
             <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ categorie.libelle }}</td>
@@ -82,6 +82,7 @@
           {% endfor %}
         </tbody>
       </table>
+    {{ knp_pagination_render(pagination, 'bundles/KnpPaginatorBundle/Pagination/custom_pagination.html.twig') }}
     </div>
     <a
       href="{{ path('app_categories_new') }}"

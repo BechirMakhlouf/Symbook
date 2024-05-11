@@ -25,7 +25,7 @@
       </thead>
 
       <tbody class="divide-y divide-gray-200">
-        {% for livre in livres %}
+        {% for livre in pagination %}
         <tr>
           <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">{{livre.titre|capitalize}}</td>
           <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{livre.isbn}}</td>
@@ -44,6 +44,7 @@
         {% endfor %}
       </tbody>
     </table>
+    {{ knp_pagination_render(pagination, 'bundles/KnpPaginatorBundle/Pagination/custom_pagination.html.twig') }}
   </div>
 </div>
 {% endblock %}

@@ -6,6 +6,7 @@ use App\Entity\Categories;
 use App\Form\CategoriesType;
 use App\Repository\CategoriesRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,11 +17,32 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[IsGranted('ROLE_ADMIN')]
 class CategoriesController extends AbstractController
 {
-    #[Route('/', name: 'app_categories', methods: ['GET'])]
-    public function index(CategoriesRepository $categoriesRepository): Response
+    // #[Route('/boutique/{page<\d+>?1}', name: 'app_boutique')]
+    // public function index(LivresRepository $livresRepository, PaginatorInterface $paginator, Request $request): Response
+    // {
+    //     $query = $livresRepository->createQueryBuilder('l')->getQuery();
+    //     $pagination = $paginator->paginate(
+    //         $query,
+    //         $request->attributes->get('page', 1),
+    //         10
+    //     );
+    //
+    //     return $this->render('boutique/index.html.twig', [
+    //         'pagination' => $pagination,
+    //     ]);
+    // }
+
+    #[Route('/page/{page<\d+>?1}', name: 'app_categories', methods: ['GET'])]
+    public function index(CategoriesRepository $categoriesRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        $query = $categoriesRepository->createQueryBuilder('c')->getQuery();
+        $pagination = $paginator->paginate(
+            $query,
+            $request->attributes->get('page', 1),
+            10
+        );
         return $this->render('categories/index.html.twig', [
-            'categories' => $categoriesRepository->findAll(),
+            'pagination' => $pagination,
         ]);
     }
 

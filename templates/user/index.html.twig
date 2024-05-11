@@ -24,7 +24,7 @@
       </thead>
 
       <tbody class="divide-y divide-gray-200">
-        {% for user in users %}
+        {% for user in pagination %}
           <tr>
             <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">{{user.id}}</td>
             <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{user.email}}</td>
@@ -49,6 +49,7 @@
         {% endfor %}
       </tbody>
     </table>
+    {{ knp_pagination_render(pagination, 'bundles/KnpPaginatorBundle/Pagination/custom_pagination.html.twig') }}
   </div>
   <a
     href="{{ path('app_user_new') }}"
