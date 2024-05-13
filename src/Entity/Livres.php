@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\LivresRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -46,6 +48,12 @@ class Livres
 
     #[ORM\ManyToOne(inversedBy: 'livres')]
     private ?Categories $categorie = null;
+
+
+
+    public function __construct()
+    {
+    }
 
     public function getId(): ?int
     {
@@ -183,4 +191,5 @@ class Livres
 
         return $this;
     }
+
 }

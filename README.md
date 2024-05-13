@@ -6,10 +6,10 @@
 # Fonctionnalités
 ## Pour les Utilisateurs:
 1. [ ] Inscription avec confirmation par email : Les utilisateurs doivent saisir leur adresse email lors de l'inscription. Un email de confirmation sera envoyé à l'adresse fournie pour vérifier l'authenticité de l'utilisateur.
-2. [ ] Authentification sécurisée avec mot de passe : Les utilisateurs peuvent se connecter en saisissant leur adresse email et leur mot de passe.
+2. [X] Authentification sécurisée avec mot de passe : Les utilisateurs peuvent se connecter en saisissant leur adresse email et leur mot de passe.
 3. [ ] Réinitialisation du mot de passe : En cas d'oubli de mot de passe, les utilisateurs peuvent demander une réinitialisation du mot de passe via un lien envoyé par email.
 4. [ ] Parcours et recherche de livres par titre, auteur et catégorie à partir d’une vitrine affichant les photos des livres avec deux boutons «Voir détail » et « Ajouter au panier »
-5. [ ] Consultation des détails des livres, y compris les prix et les descriptions.
+5. [X] Consultation des détails des livres, y compris les prix et les descriptions.
 6. [ ] Ajout de livres au panier d'achat.
 7. [ ] Consultation du panier avec possibilité de mise à jour de quantité à Inscription et authentification des utilisateurs.
 8. [ ] Passage de commandes pour les livres sélectionnés.
