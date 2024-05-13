@@ -24,7 +24,7 @@ class BoutiqueController extends AbstractController
         $pagination = $paginator->paginate(
             $query,
             $request->attributes->get('page', 1),
-            10
+            12
         );
 
         return $this->render('boutique/index.html.twig', [

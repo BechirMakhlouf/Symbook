@@ -152,7 +152,7 @@
           <img
             src="{{livre.Image}}"
             alt="{{livre.titre}}"
-            class="aspect-square w-full rounded object-cover"
+            class="aspect-[4/5] w-full rounded object-cover"
           />
 
           <div class="mt-3">
@@ -166,7 +166,7 @@
       </div>
       {% endfor %}
     </div>
-    <div class="pagination">
+    <div class="pagination flex justify-center">
         <!-- {{ knp_pagination_render(pagination) }} -->
     {{ knp_pagination_render(pagination, 'bundles/KnpPaginatorBundle/Pagination/custom_pagination.html.twig') }}
     </div>

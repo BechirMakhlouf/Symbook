@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use function PHPUnit\Framework\returnSelf;
 
 #[Route('admin/livres')]
 #[IsGranted('ROLE_ADMIN')]
@@ -20,6 +21,7 @@ class LivresController extends AbstractController
     #[Route('/page/{page<\d+>?1}', name: 'app_livres', methods: ['GET'])]
     public function index(LivresRepository $livresRepository, PaginatorInterface $paginator, Request $request): Response
     {
+
         $query = $livresRepository->createQueryBuilder('l')->getQuery();
         $pagination = $paginator->paginate(
             $query,
@@ -31,7 +33,35 @@ class LivresController extends AbstractController
             'pagination' => $pagination,
         ]);
     }
-
+    //
+    // #[Route('/image-good', name: 'app_livres', methods: ['GET'])]
+    // public function imagesGood(LivresRepository $livresRepository,EntityManagerInterface $entityManager, PaginatorInterface $paginator, Request $request): Response
+    // {
+    //
+    //     $images = array(
+    //   "https://m.media-amazon.com/images/I/71++zre30EL._SL1360_.jpg",
+    //   "https://m.media-amazon.com/images/I/71sOqrd6JHL._SL1499_.jpg",
+    //   "https://m.media-amazon.com/images/I/71HMJiEu7JL._SL1500_.jpg",
+    //   "https://m.media-amazon.com/images/I/81lJ9+mcvzL._SL1500_.jpg",
+    //   "https://m.media-amazon.com/images/I/71cwqJTWJWL._SL1500_.jpg",
+    //   "https://m.media-amazon.com/images/I/61yDxuC-3XL._SL1500_.jpg",
+    //     );
+    //     $livres = $livresRepository->findAll();
+    //     foreach ($livres as $livre) {
+    //         $randomImageKey = array_rand($images);
+    //         $randomImage = $images[$randomImageKey];
+    //         $livre->setImage($randomImage);
+    //         $entityManager->persist($livre);
+    //     }
+    //     $entityManager->flush(); 
+    //     // $query = $livresRepository->createQueryBuilder('l')->getQuery();
+    //     // $pagination = $paginator->paginate(
+    //     //     $query,
+    //     //     $request->attributes->get('page', 1),
+    //     //     10
+    //     // );
+    //     return new Response("all good");
+    // }
     #[Route('/new', name: 'app_livres_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
