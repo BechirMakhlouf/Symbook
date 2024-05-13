@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Livres;
 use App\Entity\Panier;
+use App\Repository\CategoriesRepository;
 use App\Repository\LivresRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -11,24 +12,62 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\Routing\Attribute\Route;
 
 class BoutiqueController extends AbstractController
 {
     private Security $security;
 
-    #[Route('/boutique/{page<\d+>?1}', name: 'app_boutique')]
-    public function index(LivresRepository $livresRepository, PaginatorInterface $paginator, Request $request): Response
-    {
-        $query = $livresRepository->createQueryBuilder('l')->getQuery();
+    #[Route('/boutique/{page<-?\d+>?1}', name: 'app_boutique')]
+    public function index(
+        LivresRepository $livresRepository,
+        CategoriesRepository $categoriesRepository,
+        PaginatorInterface $paginator,
+        Request $request,
+        #[MapQueryParameter] ?string $titre = null,
+        #[MapQueryParameter] ?string $auteur = null,
+        #[MapQueryParameter] ?string $categorie = null,
+    ): Response {
+
+        $queryBuilder = $livresRepository->createQueryBuilder('l')
+        ->join('l.categorie', 'c');
+
+        if ($titre !== null and $titre !== "") {
+            $queryBuilder->andWhere("l.titre LIKE :titre")
+                         ->setParameter('titre', '%' . $titre . '%');
+
+        }
+
+        if ($auteur !== null and $auteur !== "") {
+            $queryBuilder->andWhere("l.editeur = :auteur")
+                         ->setParameter('auteur', $auteur);
+        }
+
+        if ($categorie !== null and $categorie !== "") {
+            $queryBuilder->andWhere("c.libelle = :categorie")
+                         ->setParameter('categorie', $categorie);
+        }
+
+        $query = $queryBuilder->getQuery();
+        
         $pagination = $paginator->paginate(
             $query,
             $request->attributes->get('page', 1),
             12
         );
+        $categories = $categoriesRepository->findAll();
+        $livres = $livresRepository->findAll();
+        $auteurs = array();
+
+        foreach ($livres as $livre) {
+            array_push($auteurs, $livre->getAuteur());
+        }
 
         return $this->render('boutique/index.html.twig', [
             'pagination' => $pagination,
+            'categories' => $categories,
+            'auteurs' => $auteurs,
         ]);
     }
 

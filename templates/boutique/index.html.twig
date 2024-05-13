@@ -7,142 +7,77 @@
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
-<div class="h-full flex">
-  <div class="flex h-screen flex-col justify-between border-e bg-white">
-    <div class="px-4 py-6">
-      <span class="grid h-10 w-32 place-content-center rounded-lg bg-gray-100 text-xs text-gray-600">
-        Logo
-      </span>
+<div class="h-full flex ">
+  <div class="px-4 mx-4 md:flex gap-y-4  lg:w-96 h-screen flex-col  border-e bg-white">
+    <h2>Filtre</h2>
+    <div>
+      <form action="{{ path('app_boutique') }}" method="GET">
+      <label for="categorie" class="block text-sm font-medium text-gray-900"> Categorie </label>
 
-      <ul class="mt-6 space-y-1">
-        <li>
-          <a
-            href="#"
-            class="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700"
+      <select
+        name="categorie"
+        id="categorie"
+        class="mt-1.5 w-full rounded-lg border-gray-300 text-gray-700 sm:text-sm"
+      >
+        <option value="">Choisir</option>
+      {% for categorie in categories %}
+        <option value="{{categorie.getLibelle()}}">{{categorie.getLibelle()}}</option>
+      {% endfor %}
+      </select>
+    <div>
+
+    <label for="auteur" class="block text-sm font-medium text-gray-900"> Auteur </label>
+      <div class="relative mt-1.5">
+        <input
+          type="text"
+          name="auteur"
+          list="auteurList"
+          id="auteur"
+          class="w-full rounded-lg border-gray-300 pe-10 text-gray-700 sm:text-sm [&::-webkit-calendar-picker-indicator]:opacity-0"
+          placeholder="Choisir"
+        />
+
+        <span class="absolute inset-y-0 end-0 flex w-8 items-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-5 text-gray-500"
           >
-            General
-          </a>
-        </li>
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"
+            />
+          </svg>
+        </span>
+      </div>
 
-        <li>
-          <details class="group [&_summary::-webkit-details-marker]:hidden">
-            <summary
-              class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
-            >
-              <span class="text-sm font-medium"> Teams </span>
-
-              <span class="shrink-0 transition duration-300 group-open:-rotate-180">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </span>
-            </summary>
-
-            <ul class="mt-2 space-y-1 px-4">
-              <li>
-                <a
-                  href="#"
-                  class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
-                >
-                  Banned Users
-                </a>
-              </li>
-
-              <li>
-                <a
-                  href="#"
-                  class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
-                >
-                  Calendar
-                </a>
-              </li>
-            </ul>
-          </details>
-        </li>
-
-        <li>
-          <a
-            href="#"
-            class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
-          >
-            Billing
-          </a>
-        </li>
-
-        <li>
-          <a
-            href="#"
-            class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
-          >
-            Invoices
-          </a>
-        </li>
-
-        <li>
-          <details class="group [&_summary::-webkit-details-marker]:hidden">
-            <summary
-              class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
-            >
-              <span class="text-sm font-medium"> Account </span>
-
-              <span class="shrink-0 transition duration-300 group-open:-rotate-180">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </span>
-            </summary>
-
-            <ul class="mt-2 space-y-1 px-4">
-              <li>
-                <a
-                  href="#"
-                  class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
-                >
-                  Details
-                </a>
-              </li>
-
-              <li>
-                <a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700" >
-                  Security
-                </a>
-              </li>
-
-              <li>
-                <form action="#">
-                  <button
-                    type="submit"
-                    class="w-full rounded-lg px-4 py-2 text-sm font-medium text-gray-500 [text-align:_inherit] hover:bg-gray-100 hover:text-gray-700"
-                  >
-                    Logout
-                  </button>
-                </form>
-              </li>
-            </ul>
-          </details>
-        </li>
-      </ul>
+      <datalist name="auteurList" id="auteurList">
+        {% for auteur in auteurs %}
+        <option value="{{auteur}}">{{auteur}}</option>
+        {% endfor %}
+      </datalist>
+    </div>
+    <div>
+      <label for="titre" class="block text-sm font-medium text-gray-900"> Titre </label>
+      <input
+        type="text"
+        name="titre"
+        id="titre"
+        placeholder="titre.."
+        value=""
+        class="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+      />
+      <input type="submit" class="mt-2 w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
     </div>
 
+    </form>
   </div>
+
+</div>
 
   <div class="p-4 w-full h-full">
     <div class=" h-full grid grid-cols-1 gap-4 lg:grid-cols-4 lg:gap-8">
@@ -167,7 +102,6 @@
       {% endfor %}
     </div>
     <div class="pagination flex justify-center">
-        <!-- {{ knp_pagination_render(pagination) }} -->
     {{ knp_pagination_render(pagination, 'bundles/KnpPaginatorBundle/Pagination/custom_pagination.html.twig') }}
     </div>
   </div>

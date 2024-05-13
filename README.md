@@ -10,7 +10,7 @@
 3. [ ] Réinitialisation du mot de passe : En cas d'oubli de mot de passe, les utilisateurs peuvent demander une réinitialisation du mot de passe via un lien envoyé par email.
 4. [ ] Parcours et recherche de livres par titre, auteur et catégorie à partir d’une vitrine affichant les photos des livres avec deux boutons «Voir détail » et « Ajouter au panier »
 5. [X] Consultation des détails des livres, y compris les prix et les descriptions.
-6. [ ] Ajout de livres au panier d'achat.
+6. [X] Ajout de livres au panier d'achat.
 7. [ ] Consultation du panier avec possibilité de mise à jour de quantité à Inscription et authentification des utilisateurs.
 8. [ ] Passage de commandes pour les livres sélectionnés.
 9. [ ] Consultation de l'historique des commandes.
@@ -18,7 +18,7 @@
 
 ## Pour les administrateurs:
 1. [X] Gestion du catalogue de livres : ajout, modification et suppression de livres.
-2. [ ] Gestion des catégories de livres : création, édition et suppression de catégories.
+2. [X] Gestion des catégories de livres : création, édition et suppression de catégories.
 3. [ ] Consultation des commandes en attente, en cours et complétées.
 4. [X] Gestion des utilisateurs : consultation, modification et suppression des comptes d'utilisateurs. // STRIKE THIS
 5. [ ] Consultation du Tableau de bord (Dashboard) avec indicateurs clés, tels que le livre le plus vendu,
