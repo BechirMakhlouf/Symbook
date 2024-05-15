@@ -21,7 +21,12 @@
       >
         <option value="">Choisir</option>
       {% for categorie in categories %}
-        <option value="{{categorie.getLibelle()}}">{{categorie.getLibelle()}}</option>
+        <option 
+          {% if categorie.getLibelle() == filtre.categorie %}
+            selected
+          {% endif %}
+          value="{{categorie.getLibelle()}}"
+        >{{categorie.getLibelle()}}</option>
       {% endfor %}
       </select>
     <div>
@@ -33,6 +38,7 @@
           name="auteur"
           list="auteurList"
           id="auteur"
+          value="{{filtre.auteur}}"
           class="w-full rounded-lg border-gray-300 pe-10 text-gray-700 sm:text-sm [&::-webkit-calendar-picker-indicator]:opacity-0"
           placeholder="Choisir"
         />
@@ -68,7 +74,7 @@
         name="titre"
         id="titre"
         placeholder="titre.."
-        value=""
+        value="{{filtre.titre}}"
         class="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
       />
       <input type="submit" class="mt-2 w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">

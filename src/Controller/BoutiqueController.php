@@ -61,11 +61,17 @@ class BoutiqueController extends AbstractController
         foreach ($livres as $livre) {
             array_push($auteurs, $livre->getAuteur());
         }
+        $filtre = array(
+          "titre" => $titre,
+          "auteur" => $auteur,
+          "categorie" => $categorie,
+        );
 
         return $this->render('boutique/index.html.twig', [
             'pagination' => $pagination,
             'categories' => $categories,
             'auteurs' => $auteurs,
+            'filtre' => $filtre,
         ]);
     }
 
