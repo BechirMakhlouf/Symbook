@@ -29,33 +29,31 @@ class BoutiqueController extends AbstractController
         #[MapQueryParameter] ?string $auteur = null,
         #[MapQueryParameter] ?string $categorie = null,
     ): Response {
-
         $queryBuilder = $livresRepository->createQueryBuilder('l')
-        ->join('l.categorie', 'c');
+                                         ->join('l.categorie', 'c');
 
         if ($titre !== null and $titre !== "") {
             $queryBuilder->andWhere("l.titre LIKE :titre")
                          ->setParameter('titre', '%' . $titre . '%');
-
         }
-
         if ($auteur !== null and $auteur !== "") {
-            $queryBuilder->andWhere("l.editeur = :auteur")
+            $queryBuilder->andWhere("l.Auteur = :auteur")
                          ->setParameter('auteur', $auteur);
         }
-
         if ($categorie !== null and $categorie !== "") {
             $queryBuilder->andWhere("c.libelle = :categorie")
                          ->setParameter('categorie', $categorie);
         }
 
         $query = $queryBuilder->getQuery();
-        
+
+        // var_dump($query->execute());
         $pagination = $paginator->paginate(
             $query,
             $request->attributes->get('page', 1),
             12
         );
+
         $categories = $categoriesRepository->findAll();
         $livres = $livresRepository->findAll();
         $auteurs = array();

@@ -16,8 +16,9 @@
 9. [ ] Consultation de l'historique des commandes.
 10. [ ] Module de paiement (Exemple Stripe) sécurisé pour finaliser les transactions.
 
+11. [ ] validation cruds el kol
 ## Pour les administrateurs:
-1. [X] Gestion du catalogue de livres : ajout, modification et suppression de livres.
+1. [ f] Gestion du catalogue de livres : ajout, modification et suppression de livres.
 2. [X] Gestion des catégories de livres : création, édition et suppression de catégories.
 3. [ ] Consultation des commandes en attente, en cours et complétées.
 4. [X] Gestion des utilisateurs : consultation, modification et suppression des comptes d'utilisateurs. // STRIKE THIS
