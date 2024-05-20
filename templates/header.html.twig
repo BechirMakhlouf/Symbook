@@ -26,6 +26,9 @@
         {% if is_granted('ROLE_ADMIN') %}
             <ul class="m-0 flex justify-center items-center gap-6 text-sm">
               <li class="">
+                <a class="text-gray-500 transition hover:text-gray-500/75" href="{{url('app_dashboard')}}"> Dashboard </a>
+              </li>
+              <li class="">
                 <a class="text-gray-500 transition hover:text-gray-500/75" href="{{url('app_livres')}}"> Livres </a>
               </li>
 
@@ -43,7 +46,7 @@
         {% elseif is_granted('ROLE_USER') %}
             <ul class="m-0 flex justify-center items-center gap-6 text-sm">
               <li class="">
-                <a class="text-gray-500 transition hover:text-gray-500/75" href="#"> Compte </a>
+                <a class="text-gray-500 transition hover:text-gray-500/75" href="{{url("app_commande_histoire")}}"> Commandes </a>
               </li>
 
               <li>

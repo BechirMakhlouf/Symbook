@@ -3,6 +3,9 @@
 {% block title %}Categories{% endblock %}
 
 {% block body %}
+
+  <div class="h-[80vh] min-h-fit flex justify-center items-center">
+    <div class="flex flex-col gap-4 min-h-[50vh]">
     <h1>Categories</h1>
 
     <table class="table">
@@ -26,10 +29,12 @@
         </tbody>
     </table>
 
+    <a class="btn btn-secondary" href="{{ path('app_categories_edit', {'id': category.id}) }}">edit</a>
     <a href="{{ path('app_categories') }}">back to list</a>
 
-    <a href="{{ path('app_categories_edit', {'id': category.id}) }}">edit</a>
 
     {{ include('categories/_delete_form.html.twig') }}
 
+</div>
+</div>
 {% endblock %}

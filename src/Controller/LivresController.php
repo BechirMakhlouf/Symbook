@@ -39,6 +39,12 @@ class LivresController extends AbstractController
     // {
     //
     //     $images = array(
+    //   "https://m.media-amazon.com/images/I/71++zre30EL._SL1360_.jpg",
+    //   "https://m.media-amazon.com/images/I/71sOqrd6JHL._SL1499_.jpg",
+    //   "https://m.media-amazon.com/images/I/71HMJiEu7JL._SL1500_.jpg",
+    //   "https://m.media-amazon.com/images/I/81lJ9+mcvzL._SL1500_.jpg",
+    //   "https://m.media-amazon.com/images/I/71cwqJTWJWL._SL1500_.jpg",
+    //   "https://m.media-amazon.com/images/I/61yDxuC-3XL._SL1500_.jpg",
     //     );
     //     $livres = $livresRepository->findAll();
     //     foreach ($livres as $livre) {
@@ -56,7 +62,6 @@ class LivresController extends AbstractController
     //     // );
     //     return new Response("all good");
     // }
-  
     #[Route('/new', name: 'app_livres_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {

@@ -27,8 +27,7 @@ class PanierController extends AbstractController
     public function addLivreToPanier(Livres $livre): Response
     {
         $user = $this->security->getUser();
-        $panier = $user->getPanier();
-
+        $panier = $user?->getPanier();
         if ($user == null) {
             return $this->redirectToRoute('app_login');
         }

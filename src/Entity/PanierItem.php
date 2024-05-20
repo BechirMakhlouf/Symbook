@@ -16,11 +16,11 @@ class PanierItem
     private ?int $id = null;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Livres $livre = null;
 
     #[ORM\Column]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?int $quantite = null;
 
     // #[ORM\ManyToOne(inversedBy: 'PanierItems')]

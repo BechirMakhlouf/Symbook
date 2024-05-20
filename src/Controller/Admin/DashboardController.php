@@ -73,7 +73,7 @@ class DashboardController extends AbstractDashboardController
         ]);
     }
 
-    #[Route('/admin', name: 'admin')]
+    #[Route('/dashboard', name: 'app_dashboard')]
     public function index(): Response
     {
         $topLivres = $this->achatRepository->OccurrencesLivres();

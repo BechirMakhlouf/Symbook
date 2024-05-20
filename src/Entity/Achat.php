@@ -16,14 +16,14 @@ class Achat
     private ?int $id = null;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Livres $livre = null;
 
     #[ORM\Column]
     private ?int $qte = null;
 
     #[ORM\ManyToOne(inversedBy: 'achats')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Commande $commande = null;
 
     public function getId(): ?int

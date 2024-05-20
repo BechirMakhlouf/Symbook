@@ -3,6 +3,7 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
+{#
     <div class="flex justify-center">
     {{ form_errors(registrationForm) }}
     {{ form_start(registrationForm) }}
@@ -15,6 +16,7 @@
         <button type="submit" class="btn">Register</button>
     {{ form_end(registrationForm) }}
     </div>
+  #}
 <!--
   Heads up! 👋
 
@@ -48,103 +50,21 @@
         </h1>
 
 
-        <form action="#" class="mt-8 grid grid-cols-6 gap-6">
-          <div class="col-span-6 sm:col-span-3">
-            <label for="FirstName" class="block text-sm font-medium text-gray-700">
-              Nom
-            </label>
+    <div class="flex justify-left my-16">
+    {{ form_errors(registrationForm) }}
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Mots de passe'
+        }) }}
+        {{ form_row(registrationForm.agreeTerms) }}
 
-            <input
-              type="text"
-              id="FirstName"
-              name="first_name"
-              class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-            />
-          </div>
-
-          <div class="col-span-6 sm:col-span-3">
-            <label for="LastName" class="block text-sm font-medium text-gray-700">
-              Prenom
-            </label>
-
-            <input
-              type="text"
-              id="LastName"
-              name="last_name"
-              class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-            />
-          </div>
-
-          <div class="col-span-6">
-            <label for="{{field_label(registrationForm.email)}}" class="block text-sm font-medium text-gray-700"> Email </label>
-            <input
-                type="email"
-                id="Email"
-                name="{{ field_name(registrationForm.email) }}"
-                value="{{ field_value(registrationForm.email) }}"
-                placeholder="{{ field_label(registrationForm.email) }}"
-              class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-            >
-
-            <!-- <input -->
-            <!--   type="email" -->
-            <!--   id="Email" -->
-            <!--   name="email" -->
-            <!--   class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" -->
-            <!-- /> -->
-
-          </div>
-
-          <div class="col-span-6 sm:col-span-3">
-            <label for="Password" class="block text-sm font-medium text-gray-700"> Mots de passe </label>
-
-            <input
-              type="password"
-              id="Password"
-              name="password"
-              class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-            />
-          </div>
-
-          <div class="col-span-6 sm:col-span-3">
-            <label for="PasswordConfirmation" class="block text-sm font-medium text-gray-700">
-              Vérifier votre mots de passe
-            </label>
-
-            <input
-              type="password"
-              id="PasswordConfirmation"
-              name="password_confirmation"
-              class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-            />
-          </div>
-
-          <div class="col-span-6">
-            <label for="MarketingAccept" class="flex gap-4">
-              <input
-                type="checkbox"
-                id="MarketingAccept"
-                name="marketing_accept"
-                class="size-5 rounded-md border-gray-200 bg-white shadow-sm"
-              />
-
-              <span class="text-sm text-gray-700">
-                accepter les termes et conditions
-              </span>
-            </label>
-          </div>
-
-          <!-- <div class="col-span-6"> -->
-          <!--   <p class="text-sm text-gray-500"> -->
-          <!--     By creating an account, you agree to our -->
-          <!--     <a href="#" class="text-gray-700 underline"> terms and conditions </a> -->
-          <!--     and -->
-          <!--     <a href="#" class="text-gray-700 underline">privacy policy</a>. -->
-          <!--   </p> -->
-          <!-- </div> -->
+        <!-- <button type="submit" class="btn">Register</button> -->
+    </div>
 
           <div class="col-span-6 sm:flex sm:items-center sm:gap-4">
             <button
+              type="submit"
               class="inline-block shrink-0 rounded-md border border-primary bg-teal-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
             >
               Créer Votre Compte
@@ -155,7 +75,7 @@
               <a href="{{url('app_login')}}" class="text-gray-700 underline">Connectez-vous</a>.
             </p>
           </div>
-        </form>
+    {{ form_end(registrationForm) }}
       </div>
     </main>
   </div>

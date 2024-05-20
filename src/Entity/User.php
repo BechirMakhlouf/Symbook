@@ -25,6 +25,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private array $roles = [];
 
+    #[ORM\Column]
+    private bool $isVerified = false;
     /**
      * @var string The hashed password
      */
@@ -46,11 +48,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->lesCommandes = new ArrayCollection();
     }
 
+    public function getIsVerified(): bool
+    {
+      return $this->isVerified;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    
     public function getEmail(): ?string
     {
         return $this->email;
@@ -91,7 +99,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
+    public function setVerified(bool $isVerified): static
+    {
+      $this->isVerified = $isVerified;
+      return $this;
+    }
     /**
      * @see PasswordAuthenticatedUserInterface
      */

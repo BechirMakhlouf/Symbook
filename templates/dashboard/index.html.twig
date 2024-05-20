@@ -1,20 +1,40 @@
-
-{% extends '@EasyAdmin/page/content.html.twig' %}
-{% block content %}
-    <div class="border-2 border-red-400 h-[800px]">    <!-- <h1 class="w-full text-3xl border-2 border-red-400">Dashboard</h1> -->
-    <!-- <div class="flex flex-wrap justify-center items-center w-full h-full"> -->
-    <!-- <h1 class="w-full text-3xl border-2 border-red-400">Dashboard</h1> -->
-
-        <!-- <canvas id="lineChart"></canvas> -->
-        <!-- <div class="w-[600px]">  -->
-        <!--   <h1 class="text-3xl">Top des livres</h1> -->
-          <canvas id="barChart" class="w-[400px]"></canvas>
-        <!-- </div> -->
-        <!-- <div class="w-[400px] text-3xl">  -->
-        <!-- <h1>Top des catégories</h1> -->
-          <canvas id="pieChart" class="w-[400px]"></canvas>
+{% extends 'base.html.twig' %}
+{# {% extends '@EasyAdmin/page/content.html.twig' %} #}
+{% block body %}
+{#
+<!--     <h1 class="w-full my-4 text-center">Dashboard</h1> -->
+<!--     <div class="min-h-[80vh] screen flex flex-wrap justify-center items-center bg-transparent border-2 w">    <!-- <h1 class="w-full text-3xl border-2 border-red-400">Dashboard</h1> --> -->
+<!--     <!-- <div class="flex flex-wrap justify-center items-center w-full h-full"> --> -->
+<!--     <!-- <h1 class="w-full text-3xl border-2 border-red-400">Dashboard</h1> --> -->
+<!---->
+<!--         <!-- <canvas id="lineChart"></canvas> --> -->
+<!--         <!-- <div class="w-[600px]">  --> -->
+<!--         <!--   <h1 class="text-3xl">Top des livres</h1> --> -->
+<!--         <div class="w-1/2"> -->
+<!--            -->
+<!--         <h1 class="w-full my-4 text-center">Livres Plus Vendu:</h1> -->
+<!--           <canvas id="barChart" class=""></canvas> -->
+<!--           </div> -->
+<!--         <!-- </div> --> -->
+<!--         <!-- <div class="w-[400px] text-3xl">  --> -->
+<!--         <!-- <h1>Top des catégories</h1> --> -->
+<!--         <div class="1/2"> -->
+<!--         <h1 class="w-full my-4 text-center">Categories Plus Vendu:</h1> -->
+<!--         <canvas id="pieChart" class=""></canvas> -->
+<!--         </div> -->
+<!-- </div> -->
+#}
+    <h1 class="w-full my-4 text-center">Dashboard</h1>
+<div class="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">
+  <div class="h-[800px] rounded-lg flex flex-col justify-center items-center">
+        <h2 class="w-full my-4 text-center">Categories Plus Vendu:</h2>
+        <canvas id="pieChart" class="max-w-[500px]"></canvas>
+  </div>
+  <div class="h-[400px] rounded-lg flex flex-col justify-start items-center">
+        <h2 class="w-full my-4 text-center">Livres Plus Vendu:</h2>
+          <canvas id="barChart" class="w-48"></canvas>
+  </div>
 </div>
-
         <!-- </div> -->
 
     <!-- </div> -->
@@ -45,17 +65,19 @@
               plugins: {
                   legend: {
                       labels: {
-                          color: '#e0e0e0'
+                          padding: 0,
+                          margin: 0,
+                          color: 'black'
                       }
                   }
               },
               scales: {
                   x: {
-                      ticks: { color: '#e0e0e0' },
+                      ticks: { color: 'black' },
                       grid: { color: '#444' }
                   },
                   y: {
-                      ticks: { color: '#e0e0e0' },
+                      ticks: { color: 'black' },
                       grid: { color: '#444' }
                   }
               }
@@ -73,7 +95,7 @@
                   {% endfor %}
               ],
               datasets: [{
-                  label: 'Total Sold',
+                  label: 'Total Achetee',
                   backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)'],
                   data: [
                       {% for item in topCategories %}
@@ -86,7 +108,7 @@
               plugins: {
                   legend: {
                       labels: {
-                          color: '#e0e0e0'
+                          color: 'black'
                       }
                   }
               }
@@ -94,9 +116,6 @@
       });
 
   </script>
-    {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
-    {% endblock %}
 {% endblock %}
 
 

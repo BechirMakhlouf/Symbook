@@ -40,7 +40,7 @@ class Commande
     private ?\DateTimeInterface $dateDeCommande = null;
 
     #[ORM\ManyToOne(inversedBy: 'lesCommandes')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?User $user = null;
 
     public function getId(): ?int
