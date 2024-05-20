@@ -62,6 +62,7 @@ class LivresController extends AbstractController
     //     // );
     //     return new Response("all good");
     // }
+
     #[Route('/new', name: 'app_livres_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {

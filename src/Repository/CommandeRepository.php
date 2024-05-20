@@ -24,6 +24,17 @@ class CommandeRepository extends ServiceEntityRepository
           ->getSingleScalarResult();
     }
 
+    public function getCommandesNumberPerMonth($month): array
+    {
+        return $this->createQueryBuilder('c')
+            ->select('MONTH(c.date) as month, COUNT(c.id) as numCommandes')
+            ->where('YEAR(c.date) = :year')
+            ->setParameter('year', $month)
+            ->groupBy('month')
+            ->orderBy('month', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Commande::class);

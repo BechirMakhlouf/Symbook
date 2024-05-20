@@ -78,6 +78,7 @@ class DashboardController extends AbstractDashboardController
     {
         $topLivres = $this->achatRepository->OccurrencesLivres();
         $topCategories = $this->achatRepository->OccurrencesCategorie();
+        $nombreCommandes = $this->commandeRepository->nombreCommande();
         // $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $chart = $this->chartBuilder->createChart(Chart::TYPE_LINE);
         $chart->setData([
@@ -103,6 +104,7 @@ class DashboardController extends AbstractDashboardController
         return $this->render('dashboard/index.html.twig', [
             'topLivres' => $topLivres,
             'topCategories' => $topCategories,
+            'nombreCommandes' => $nombreCommandes,
             'chart' => $chart,
         ]);
     }

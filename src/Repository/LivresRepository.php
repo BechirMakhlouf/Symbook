@@ -14,13 +14,20 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Livres[]    findAll()
  * @method Livres[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class LivresRepository extends ServiceEntityRepository
+class LivresRepository extends ServiceEntityRepository 
 {
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Livres::class);
     }
-
+    public function getLastFourLivres(): array {
+      return $this->createQueryBuilder('l')
+                ->orderBy('l.id', 'DESC')
+                ->setMaxResults(4)
+                ->getQuery()
+                ->getResult();
+      }
+  }
 //    /**
 //     * @return Livres[] Returns an array of Livres objects
 //     */
@@ -45,4 +52,3 @@ class LivresRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
-}

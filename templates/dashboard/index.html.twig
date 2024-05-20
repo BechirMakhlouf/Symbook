@@ -25,12 +25,19 @@
 <!-- </div> -->
 #}
     <h1 class="w-full my-4 text-center">Dashboard</h1>
-<div class="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">
-  <div class="h-[800px] rounded-lg flex flex-col justify-center items-center">
+    <div class="flex justify-center">
+    <div class="border-2 border-gray-300 p-4 rounded-lg w-fit flex flex-col justify-center items-center">
+    <h2 class="w-full my-4 text-center">Nombre total des commandes</h2>
+    <h4>{{nombreCommandes}}</h4>
+    </div>
+    </div>
+<div class="p-4 grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">
+
+  <div class="border-2 border-gray-300 p-4 h-[800px] rounded-lg flex flex-col justify-center items-center">
         <h2 class="w-full my-4 text-center">Categories Plus Vendu:</h2>
         <canvas id="pieChart" class="max-w-[500px]"></canvas>
   </div>
-  <div class="h-[400px] rounded-lg flex flex-col justify-start items-center">
+  <div class="h-full border-2 border-gray-300 p-4 rounded-lg flex flex-col justify-start items-center">
         <h2 class="w-full my-4 text-center">Livres Plus Vendu:</h2>
           <canvas id="barChart" class="w-48"></canvas>
   </div>

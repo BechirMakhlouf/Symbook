@@ -44,6 +44,12 @@
         {% endfor %}
       </tbody>
     </table>
+    <a
+      href="{{ path('app_livres_new') }}"
+      class="inline-block rounded bg-teal-600 px-4 py-2 text-xs font-medium text-white hover:bg-teal-700"
+    >
+      Nouvelle Livre
+    </a>
     {{ knp_pagination_render(pagination, 'bundles/KnpPaginatorBundle/Pagination/custom_pagination.html.twig') }}
   </div>
 </div>

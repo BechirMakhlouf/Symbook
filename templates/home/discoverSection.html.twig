@@ -9,92 +9,29 @@
     </header>
 
     <ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    {% for livre in toplivres%}
       <li>
-        <a href="#" class="group block overflow-hidden">
+        <a href="{{ path('app_boutique_livre', {'id': livre.id}) }}" class="group block overflow-hidden">
           <img
-            src="https://m.media-amazon.com/images/I/41-wGNfp1aL._SY445_SX342_.jpg"
+            src="{{livre.image}}"
             alt=""
             class="h-[350px] w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[450px]"
           />
 
           <div class="relative bg-white pt-3">
             <h3 class="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4">
-              The book of everything
+              {{livre.titre}}
             </h3>
 
             <p class="mt-2">
               <span class="sr-only">Prix</span>
 
-              <span class="tracking-wider text-gray-900"> 24.00 TND </span>
+              <span class="tracking-wider text-gray-900">{{livre.prix}} TND</span>
             </p>
           </div>
         </a>
       </li>
-
-      <li>
-        <a href="#" class="group block overflow-hidden">
-          <img
-            src="https://m.media-amazon.com/images/I/31LDr7OWz3S._SY445_SX342_.jpg"
-            alt=""
-            class="h-[350px] w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[450px]"
-          />
-
-          <div class="relative bg-white pt-3">
-            <h3 class="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4">
-            Tell me your life story
-            </h3>
-
-            <p class="mt-2">
-              <span class="sr-only">Prix</span>
-
-              <span class="tracking-wider text-gray-900"> 24.00 TND </span>
-            </p>
-          </div>
-        </a>
-      </li>
-
-      <li>
-        <a href="#" class="group block overflow-hidden">
-          <img
-            src="https://m.media-amazon.com/images/I/81nefEo0d0L._SL1500_.jpg"
-            alt=""
-            class="h-[350px] w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[450px]"
-          />
-
-          <div class="relative bg-white pt-3">
-            <h3 class="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4">
-              Tom  Sellek
-            </h3>
-
-            <p class="mt-2">
-              <span class="sr-only">Prix</span>
-
-              <span class="tracking-wider text-gray-900">24.00 TND</span>
-            </p>
-          </div>
-        </a>
-      </li>
-
-      <li>
-        <a href="#" class="group block overflow-hidden">
-          <img
-            src="https://m.media-amazon.com/images/I/91Sy3S-198L._SL1500_.jpg"
-            alt=""
-            class="h-[350px] w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[450px]"
-          />
-
-          <div class="relative bg-white pt-3">
-            <h3 class="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4">
-              The Lost Bookshop
-            </h3>
-
-            <p class="mt-2">
-              <span class="sr-only">Prix</span>
-              <span class="tracking-wider text-gray-900">24.00 TND</span>
-            </p>
-          </div>
-        </a>
-      </li>
+    {% endfor %}
     </ul>
   </div>
 </section>

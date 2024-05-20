@@ -3,9 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Commande;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Stripe\Checkout\Session;
 use App\Repository\PanierRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use Stripe\Stripe;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Response;
@@ -89,5 +92,29 @@ class CommandeController extends AbstractController
         return $this->render('commande/histoire.html.twig', [
             'commandes' => $user->getCommandes(),
         ]);
+    }
+
+    #[Route('/checkout/{id}', name: 'checkout')]
+    public function checkouts(Commande $commande): Response
+    {
+        $total = $commande->getPrix();
+        Stripe::setApiKey('sk_test_51PISicP2SnuvfAe7fQ0iZhZ7V5J2i4LbKhgNyhP2WwojK05LRPZ1gvqQf6mMPGUo8OA8JXgqqomTUDgRVoCYwFlV00k8vUVC4l');
+        $checkout_session = Session::create([
+            'payment_method_types' => ['card'],
+            'line_items' => [[
+                'price_data' => [
+                    'currency' => 'usd',
+                    'product_data' => [
+                        'name' => 'livres',
+                    ],
+                    'unit_amount' => $total * 100,
+                ],
+                'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'success_url' => $this->generateUrl('app_user', [], UrlGeneratorInterface::ABSOLUTE_URL),
+            'cancel_url' => $this->generateUrl('app_user', [], UrlGeneratorInterface::ABSOLUTE_URL),
+        ]);
+        return $this->redirect($checkout_session->url, 303);
     }
 }
