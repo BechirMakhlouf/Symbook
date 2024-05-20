@@ -14,7 +14,7 @@
 7. [X] Consultation du panier avec possibilité de mise à jour de quantité à Inscription et authentification des utilisateurs.
 8. [X] Passage de commandes pour les livres sélectionnés.
 9. [X] Consultation de l'historique des commandes.
-10. --[ ] Module de paiement (Exemple Stripe) sécurisé pour finaliser les transactions.
+10. --[X] Module de paiement (Exemple Stripe) sécurisé pour finaliser les transactions.
 
 11. [X] validation cruds el kol
 ## Pour les administrateurs:
@@ -26,7 +26,7 @@
 
 ## Tableau de Bord (Administrateur):
 1. [X] Livre le Plus Vendu : Ce graphique présente le livre le plus vendu dans une période donnée. Il vous permet de voir quel livre est le plus populaire parmi les clients.
-2. --[ ] Nombre de Commandes : Ce graphique montre le nombre total de commandes passées dans une période donnée. Il vous permet de visualiser l'activité des clients et la demande des produits.
+2. --[X] Nombre de Commandes : Ce graphique montre le nombre total de commandes passées dans une période donnée. Il vous permet de visualiser l'activité des clients et la demande des produits.
 3. [ ] Utilisation d'une interface conviviale et intuitive pour sélectionner différentes périodes de temps (quotidienne, hebdomadaire, mensuelle, etc.) afin d'analyser les données de manière flexible.
 4. [ ] Mise à Jour en Temps Réel : Les données sont actualisées en temps réel pour refléter les dernières activités des clients et les performances des ventes.
 5. [X] Compatibilité avec Google Charts : Les graphiques sont générés à l'aide de Google Charts, une bibliothèque graphique JavaScript simple à utiliser et hautement personnalisable.

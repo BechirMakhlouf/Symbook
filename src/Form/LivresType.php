@@ -26,7 +26,7 @@ class LivresType extends AbstractType
             ->add('Auteur')
             ->add('categorie', EntityType::class, [
                 'class' => Categories::class,
-                'choice_label' => 'id',
+                'choice_label' => 'libelle',
             ])
         ;
     }

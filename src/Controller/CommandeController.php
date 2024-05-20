@@ -94,6 +94,18 @@ class CommandeController extends AbstractController
         ]);
     }
 
+      #[Route('/commande/details/{id}', name: 'app_commande_details')]
+      public function details(Commande $commande): Response
+      {
+          $user = $this->security->getUser();
+          if (!$user) {
+              return $this->redirectToRoute('app_login');
+          }
+          return $this->render('commande/commande.html.twig', [
+              'commande' => $commande,
+          ]);
+      }
+
     #[Route('/checkout/{id}', name: 'checkout')]
     public function checkouts(Commande $commande): Response
     {
