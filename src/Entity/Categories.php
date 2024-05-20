@@ -20,7 +20,7 @@ class Categories
     private ?string $libelle = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $slug = null;
+    private ?string $slug = null; 
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;

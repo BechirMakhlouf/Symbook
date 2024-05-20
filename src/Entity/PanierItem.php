@@ -23,7 +23,8 @@ class PanierItem
     #[ORM\JoinColumn(nullable: false)]
     private ?int $quantite = null;
 
-    #[ORM\ManyToOne(inversedBy: 'PanierItems')]
+    // #[ORM\ManyToOne(inversedBy: 'PanierItems')]
+    #[ORM\ManyToOne(targetEntity:Panier::class, inversedBy:"PanierItems", cascade:["persist"])]
     #[ORM\JoinColumn(nullable: true)]
     private ?Panier $panier = null;
 
@@ -40,7 +41,6 @@ class PanierItem
     public function setLivre(?Livres $livre): static
     {
         $this->livre = $livre;
-
         return $this;
     }
 
@@ -66,5 +66,16 @@ class PanierItem
         $this->panier = $panier;
 
         return $this;
+    }
+
+    public function toAchat(): Achat
+    {
+        $achat = new Achat();
+        $achat->setLivre($this->getLivre());
+        $achat->setQte($this->getQuantite());
+        $this->setLivre($this->getLivre());
+        $this->setQuantite(0);
+
+        return $achat;
     }
 }

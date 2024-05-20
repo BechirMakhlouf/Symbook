@@ -42,6 +42,15 @@ class Panier
         return $this->PanierItems;
     }
 
+    public function getTotal(): float
+    {
+        $total = 0;
+        foreach ($this->PanierItems as $item) {
+            $total += $item->getLivre()->getPrix() * $item->getQuantite();
+        }
+        return $total;
+    }
+     
     public function addPanierItem(PanierItem $panierItem): static
     {
         if (!$this->PanierItems->contains($panierItem)) {
@@ -72,7 +81,6 @@ class Panier
     public function setUser(User $user): static
     {
         $this->user = $user;
-
         return $this;
     }
 }

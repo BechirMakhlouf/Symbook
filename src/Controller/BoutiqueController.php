@@ -36,10 +36,12 @@ class BoutiqueController extends AbstractController
             $queryBuilder->andWhere("l.titre LIKE :titre")
                          ->setParameter('titre', '%' . $titre . '%');
         }
+
         if ($auteur !== null and $auteur !== "") {
             $queryBuilder->andWhere("l.Auteur = :auteur")
                          ->setParameter('auteur', $auteur);
         }
+
         if ($categorie !== null and $categorie !== "") {
             $queryBuilder->andWhere("c.libelle = :categorie")
                          ->setParameter('categorie', $categorie);

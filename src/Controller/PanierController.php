@@ -27,41 +27,87 @@ class PanierController extends AbstractController
     public function addLivreToPanier(Livres $livre): Response
     {
         $user = $this->security->getUser();
+        $panier = $user->getPanier();
 
-        if (!$user->getPanier()) {
-            $panier = new Panier();
-            $user->setPanier($panier);
-            $this->entityManager->persist($panier);
+        if ($user == null) {
+            return $this->redirectToRoute('app_login');
         }
 
-        $livreExistant = null;
-        foreach ($user->getPanier()->getPanierItems() as $item) {
+        if ($panier == null) {
+            $panier = new Panier();
+            $panier->setUser($user);
+        }
+
+        $itemExistant = null;
+        foreach ($panier->getPanierItems() as $item) {
             if ($item->getLivre()->getId() === $livre->getId()) {
-                $livreExistant = $item;
+                $itemExistant = $item;
                 break;
             }
         }
 
-        if ($livreExistant !== null) {
-            $livreExistant->setQuantite($livreExistant->getQuantite() + 1);
-            $this->entityManager->persist($livreExistant);
+        if ($itemExistant !== null) {
+            $itemExistant->setQuantite($itemExistant->getQuantite() + 1);
+            $this->entityManager->persist($itemExistant);
         } else {
-            $panierItem = new PanierItem();
-            $panierItem->setLivre($livre);
-            $panierItem->setQuantite(1);
-            $panierItem->setPanier($user->getPanier());
+            $panierItem = (new PanierItem())
+                        ->setLivre($livre)
+                        ->setQuantite(1)
+                        ->setPanier($panier);
+
+            $panier->addPanierItem($panierItem);
             $this->entityManager->persist($panierItem);
         }
 
+        // $panierItem = new PanierItem();
+        // $panierItem->setLivre($livre);
+        // $panierItem->setQuantite(1);
+        // $panierItem->setPanier($user->getPanier());
+        // $this->entityManager->persist($panierItem);
+        $this->entityManager->persist($panier);
         $this->entityManager->flush();
-        // return new Response('Livre added to Panier successfully');
+
+        // $panier = $user->getPanier();
+        // $panier->setUser($user);
+
+        //
+        // if ($user->getPanier() == null) {
+        //     $panier = new Panier();
+        //     $panier->setUser($user);
+        //     $user->setPanier($panier);
+        // }
+        //
+        // $itemExistant = null;
+        // foreach ($user->getPanier()->getPanierItems() as $item) {
+        //     if ($item->getLivre()->getId() === $livre->getId()) {
+        //         $itemExistant = $item;
+        //         break;
+        //     }
+        // }
+        //
+        // if ($itemExistant !== null) {
+        //     $itemExistant->setQuantite($itemExistant->getQuantite() + 1);
+        //     $this->entityManager->persist($itemExistant);
+        // } else {
+        //     $panierItem = new PanierItem();
+        //     $panierItem->setLivre($livre);
+        //     $panierItem->setQuantite(1);
+        //     $panierItem->setPanier($user->getPanier());
+        //     $this->entityManager->persist($panierItem);
+        // }
+        //
+        // $this->entityManager->persist($user);
+        // $this->entityManager->persist($panier);
+        // $this->entityManager->flush();
         return $this->redirectToRoute('app_panier');
     }
 
-    public function calculateTotal(Panier $panier): float
+    public function calculateTotal(?Panier $panier): float
     {
+        if ($panier === null) {
+            return 0.0;
+        }
         $total = 0.0;
-
         foreach ($panier->getPanierItems() as $item) {
             $total += $item->getLivre()->getPrix() * $item->getQuantite();
         }
@@ -73,17 +119,20 @@ class PanierController extends AbstractController
     public function displayPanier(): Response
     {
         $user = $this->security->getUser();
+
         if (!$user->getPanier()) {
             $panier = new Panier();
+            $panier->setUser($user);
             $user->setPanier($panier);
             $this->entityManager->persist($panier);
+            $this->entityManager->persist($user);
+            $this->entityManager->flush();
         }
-        $panier = $user->getPanier();
-        $panierItems = $panier->getPanierItems();
 
         return $this->render('panier/index.html.twig', [
-            'panierItems' => $panierItems,
-            'total' => $this->calculateTotal($panier),
+            'panierItems' => $user->getPanier()->getPanierItems(),
+            // 'panierItems' => array(),
+            'total' => $this->calculateTotal($user->getPanier()),
         ]);
     }
 

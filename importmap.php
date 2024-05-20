@@ -35,4 +35,7 @@ return [
         'version' => '5.3.3',
         'type' => 'css',
     ],
+    'chart.js/auto' => [
+        'version' => '3.9.1',
+    ],
 ];

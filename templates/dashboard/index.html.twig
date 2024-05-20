@@ -1,0 +1,102 @@
+
+{% extends '@EasyAdmin/page/content.html.twig' %}
+{% block content %}
+    <div class="border-2 border-red-400 h-[800px]">    <!-- <h1 class="w-full text-3xl border-2 border-red-400">Dashboard</h1> -->
+    <!-- <div class="flex flex-wrap justify-center items-center w-full h-full"> -->
+    <!-- <h1 class="w-full text-3xl border-2 border-red-400">Dashboard</h1> -->
+
+        <!-- <canvas id="lineChart"></canvas> -->
+        <!-- <div class="w-[600px]">  -->
+        <!--   <h1 class="text-3xl">Top des livres</h1> -->
+          <canvas id="barChart" class="w-[400px]"></canvas>
+        <!-- </div> -->
+        <!-- <div class="w-[400px] text-3xl">  -->
+        <!-- <h1>Top des catégories</h1> -->
+          <canvas id="pieChart" class="w-[400px]"></canvas>
+</div>
+
+        <!-- </div> -->
+
+    <!-- </div> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+      // Bar Chart
+      const barCtx = document.getElementById('barChart').getContext('2d');
+      new Chart(barCtx, {
+          type: 'bar',
+          data: {
+              labels: [
+                  {% for item in topLivres %}
+                      '{{ item.titre }}'{% if not loop.last %},{% endif %}
+                  {% endfor %}
+              ],
+              datasets: [{
+                  label: 'Total des ventes',
+                  backgroundColor: 'rgb(75, 192, 192)',
+                  borderColor: 'rgb(75, 192, 192)',
+                  data: [
+                      {% for item in topLivres %}
+                          {{ item.total }}{% if not loop.last %},{% endif %}
+                      {% endfor %}
+                  ]
+              }]
+          },
+          options: {
+              plugins: {
+                  legend: {
+                      labels: {
+                          color: '#e0e0e0'
+                      }
+                  }
+              },
+              scales: {
+                  x: {
+                      ticks: { color: '#e0e0e0' },
+                      grid: { color: '#444' }
+                  },
+                  y: {
+                      ticks: { color: '#e0e0e0' },
+                      grid: { color: '#444' }
+                  }
+              }
+          }
+      });
+
+      // Pie Chart
+      const pieCtx = document.getElementById('pieChart').getContext('2d');
+      new Chart(pieCtx, {
+          type: 'pie',
+          data: {
+              labels: [
+                  {% for item in topCategories %}
+                      '{{ item.nom }}'{% if not loop.last %},{% endif %}
+                  {% endfor %}
+              ],
+              datasets: [{
+                  label: 'Total Sold',
+                  backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)'],
+                  data: [
+                      {% for item in topCategories %}
+                          {{ item.total }}{% if not loop.last %},{% endif %}
+                      {% endfor %}
+                  ]
+              }]
+          },
+          options: {
+              plugins: {
+                  legend: {
+                      labels: {
+                          color: '#e0e0e0'
+                      }
+                  }
+              }
+          }
+      });
+
+  </script>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
+    {% endblock %}
+{% endblock %}
+
+

@@ -57,7 +57,7 @@ class CategoriesController extends AbstractController
             $entityManager->persist($category);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_categories_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_categories', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('categories/new.html.twig', [
@@ -100,6 +100,6 @@ class CategoriesController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_categories_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_categories', [], Response::HTTP_SEE_OTHER);
     }
 }

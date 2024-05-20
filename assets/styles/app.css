@@ -2,11 +2,4 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  margin: 0;
-  /* border: 1px solid red; */
-}
 
-body {
-  background-color: skyblue;
-}
